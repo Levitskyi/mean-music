@@ -3,19 +3,13 @@
     <button ion-button icon-only menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title>Top 30 Hot - New</ion-title>
+    <ion-title>last fm</ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
   <!--<ion-searchbar (ionInput)="getItems($event)"></ion-searchbar>-->
   <div id="target"></div>
-  <!--<ion-list>-->
-    <!--<ion-item *ngFor="let item of musicList">-->
-      <!--{{ item.title }}-->
-      <!--<ion-icon name="play" (click)="playMusic(item, $event)"></ion-icon>-->
-    <!--</ion-item>-->
-  <!--</ion-list>-->
   <ion-list>
     <ion-item *ngFor="let item of musicList">
       <ion-thumbnail class="thumb-img" item-start (click)="playMusic(item.track, $event)">
@@ -28,9 +22,6 @@
       </ion-thumbnail>
       <h2 (click)="pausePlayer()">{{item.track.title}}</h2>
       <p>{{'By ' + item.track.user.username + ' - Plays: ' + item.track.playback_count  + ' - Genre: ' + item.track.genre}}</p>
-      <!--<button ion-button clear item-end>-->
-        <!--<ion-icon name="play" (click)="playMusic(item, $event)"></ion-icon>-->
-      <!--</button>-->
       <div class="target"></div>
     </ion-item>
   </ion-list>
