@@ -11,6 +11,7 @@ import { HomePage } from '../pages/home/home';
 import { ContactPage } from '../pages/contact/contact';
 import { RockPage } from '../pages/rock/rock';
 import { LastFmPage } from '../pages/last-fm/last-fm';
+import { SpotifyPage } from '../pages/spotify/spotify';
 
 @Component({
   templateUrl: 'app.html'
@@ -18,7 +19,7 @@ import { LastFmPage } from '../pages/last-fm/last-fm';
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
-  rootPage:any = HomePage;
+  rootPage:any = LastFmPage;
   pages: Array<{title: string, component: any, index: number}>;
 
   constructor(
@@ -35,6 +36,7 @@ export class MyApp {
       { title: 'Contact', component: ContactPage, index: 2 },
       { title: 'Rock', component: RockPage, index: 3 },
       { title: 'Last fm', component: LastFmPage, index: 4 },
+      { title: 'Spotify', component: SpotifyPage, index: 5 },
     ];
   }
 

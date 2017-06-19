@@ -36,7 +36,7 @@ lfm: any;
     //   console.log(track)
     // });
 
-    this.http.get('http://ws.audioscrobbler.com/2.0/?method=track.search&track=Adele&api_key=2ee2ac2a0023ee9fff1f809a1ced06e2&limit=10&format=json').map(res => res.json()).subscribe(data => {
+    this.http.get('http://ws.audioscrobbler.com/2.0/?method=chart.gettoptracks&track=Adele&api_key=2ee2ac2a0023ee9fff1f809a1ced06e2&limit=10&format=json').map(res => res.json()).subscribe(data => {
         console.log(data);
     });
   }

@@ -1,0 +1,38 @@
+<!--
+  Generated template for the RockPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <button ion-button icon-only menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Spotify</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <ion-searchbar (ionInput)="getItems($event)"></ion-searchbar>
+  <div class="target">
+    <iframe width="300" height="80" frameborder="0" allowtransparency="true"></iframe>
+  </div>
+  <ion-list>
+    <ion-item *ngFor="let item of musicList">
+      <ion-thumbnail class="thumb-img" item-start (click)="playMusic(item, $event)">
+        <img [src]="item.album.images[0].url">
+        <div class="button-holder">
+          <button ion-button clear [hidden]="item">
+            <ion-icon name="play" item-start ></ion-icon>
+          </button>
+        </div>
+      </ion-thumbnail>
+      <h2>{{item.name}}</h2>
+      <p>{{item.desc}}</p>
+    </ion-item>
+  </ion-list>
+</ion-content>
