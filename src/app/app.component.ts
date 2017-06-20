@@ -19,7 +19,7 @@ import { SpotifyPage } from '../pages/spotify/spotify';
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
-  rootPage:any = LastFmPage;
+  rootPage:any = AboutPage;
   pages: Array<{title: string, component: any, index: number}>;
 
   constructor(
