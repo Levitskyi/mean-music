@@ -9,7 +9,6 @@ import {ApiAiClient} from "api-ai-javascript";
 export class AboutPage {
 
   constructor(public navCtrl: NavController) {
-    const client = new ApiAiClient({accessToken: '2d2750d097c848bfbaaf7a9035020fdf'});
 
     // client
     //   .textRequest('Play Adele!')

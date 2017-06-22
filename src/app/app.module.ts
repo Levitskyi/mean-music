@@ -10,8 +10,9 @@ import { HomePage } from '../pages/home/home';
 import { RockPage } from '../pages/rock/rock';
 import { LastFmPage } from '../pages/last-fm/last-fm';
 import { SpotifyPage } from '../pages/spotify/spotify';
+import { ChartsPage } from '../pages/charts/charts';
 
-// import { TabsPage } from '../pages/tabs/tabs';
+import { TabsPage } from '../pages/tabs/tabs';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -24,7 +25,9 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     HomePage,
     RockPage,
     LastFmPage,
-    SpotifyPage
+    SpotifyPage,
+    ChartsPage,
+    TabsPage
   ],
   imports: [
     BrowserModule,
@@ -39,7 +42,9 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     HomePage,
     RockPage,
     LastFmPage,
-    SpotifyPage
+    SpotifyPage,
+    ChartsPage,
+    TabsPage
   ],
   providers: [
     StatusBar,
