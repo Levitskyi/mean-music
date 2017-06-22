@@ -1,0 +1,37 @@
+<!--
+  Generated template for the SearchPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-searchbar (ionInput)="getItems($event)" placeholder="Search music"></ion-searchbar>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <ion-list class="search-ion-list" *ngIf="!musicListSearched.length">
+    <button ion-item *ngFor="let item of musicList">
+      <ion-avatar item-start>
+        <img [src]="item.track.artwork_url || item.track.user.avatar_url || item.artwork_url || item.user.avatar_url">
+      </ion-avatar>
+      <h2>{{item.track.title || item.title}}</h2>
+      <p>{{item.track.description || item.description}}</p>
+      <ion-note item-end>{{intToString(item.track.playback_count || item.playback_count)}}</ion-note>
+    </button>
+  </ion-list>
+  <ion-list class="search-ion-list" *ngIf="musicListSearched.length">
+    <button ion-item *ngFor="let item of musicListSearched">
+      <ion-avatar item-start>
+        <img [src]="item.artwork_url || item.user.avatar_url">
+      </ion-avatar>
+      <h2>{{item.title}}</h2>
+      <p>{{item.description}}</p>
+      <ion-note item-end>{{intToString(item.playback_count)}}</ion-note>
+    </button>
+  </ion-list>
+</ion-content>

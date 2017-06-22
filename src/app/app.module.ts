@@ -11,6 +11,7 @@ import { RockPage } from '../pages/rock/rock';
 import { LastFmPage } from '../pages/last-fm/last-fm';
 import { SpotifyPage } from '../pages/spotify/spotify';
 import { ChartsPage } from '../pages/charts/charts';
+import { SearchPage } from '../pages/search/search';
 
 import { TabsPage } from '../pages/tabs/tabs';
 
@@ -27,6 +28,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     LastFmPage,
     SpotifyPage,
     ChartsPage,
+    SearchPage,
     TabsPage
   ],
   imports: [
@@ -44,6 +46,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     LastFmPage,
     SpotifyPage,
     ChartsPage,
+    SearchPage,
     TabsPage
   ],
   providers: [
