@@ -15,7 +15,7 @@
 
 <ion-content padding>
   <ion-list class="search-ion-list" *ngIf="!musicListSearched.length">
-    <button ion-item *ngFor="let item of musicList">
+    <button ion-item *ngFor="let item of musicList" (click)="selectItem(item.track)">
       <ion-avatar item-start>
         <img [src]="item.track.artwork_url || item.track.user.avatar_url || item.artwork_url || item.user.avatar_url">
       </ion-avatar>
@@ -25,7 +25,7 @@
     </button>
   </ion-list>
   <ion-list class="search-ion-list" *ngIf="musicListSearched.length">
-    <button ion-item *ngFor="let item of musicListSearched">
+    <button ion-item *ngFor="let item of musicListSearched" (click)="selectItem(item)">
       <ion-avatar item-start>
         <img [src]="item.artwork_url || item.user.avatar_url">
       </ion-avatar>

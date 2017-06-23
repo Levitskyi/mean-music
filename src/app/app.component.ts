@@ -12,7 +12,7 @@ import { ContactPage } from '../pages/contact/contact';
 import { RockPage } from '../pages/rock/rock';
 import { LastFmPage } from '../pages/last-fm/last-fm';
 import { SpotifyPage } from '../pages/spotify/spotify';
-import { ChartsPage } from '../pages/charts/charts';
+// import { ChartsPage } from '../pages/charts/charts';
 
 @Component({
   templateUrl: 'app.html'

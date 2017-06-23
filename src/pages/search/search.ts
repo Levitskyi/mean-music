@@ -2,7 +2,8 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { Http, URLSearchParams } from '@angular/http';
 import * as SC from 'soundcloud';
-import * as SCWidget from 'soundcloud-widget';
+import {MediaPlugin, MediaObject} from "@ionic-native/media";
+// import * as SCWidget from 'soundcloud-widget';
 
 /**
  * Generated class for the SearchPage page.
@@ -24,7 +25,8 @@ export class SearchPage {
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
-    public http: Http) {
+    public http: Http,
+    private media: MediaPlugin) {
     SC.initialize({
       client_id: this.clientId
     });
@@ -68,6 +70,29 @@ export class SearchPage {
       var shortNum = shortValue.toFixed(1);
     }
     return shortValue+suffixes[suffixNum];
+  }
+
+  selectItem(item) {
+    // SC.stream('/tracks/'+ item.id).then(function(player){
+    //   console.log(player);
+    //   player.play();
+    //   setTimeout(()=> {
+    //     player.pause();
+    //   }, 4000);
+    // });
+    const onStatusUpdate = (status) => console.log(status);
+    const onSuccess = () => console.log('Action is successful.');
+    const onError = (error) => console.error(error.message);
+
+
+    SC.get('/tracks/' + item.id).then(res => {
+      const file: MediaObject = this.media.create(res.stream_url + '?client_id=2t9loNQH90kzJcsFCODdigxfp325aq4z', onStatusUpdate, onSuccess, onError);
+      file.play();
+      // setTimeout(() => {
+      //   file.pause();
+      // }, 10000);
+      // this.streamingMedia.playAudio(res.stream_url + '?client_id=2t9loNQH90kzJcsFCODdigxfp325aq4z', options);
+    })
   }
 
 }

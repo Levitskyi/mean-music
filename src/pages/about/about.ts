@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
-import {ApiAiClient} from "api-ai-javascript";
+// import {ApiAiClient} from "api-ai-javascript";
 
 @Component({
   selector: 'page-about',
