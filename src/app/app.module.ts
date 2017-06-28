@@ -12,12 +12,14 @@ import { LastFmPage } from '../pages/last-fm/last-fm';
 import { SpotifyPage } from '../pages/spotify/spotify';
 import { ChartsPage } from '../pages/charts/charts';
 import { SearchPage } from '../pages/search/search';
+import { GenreDetailsPage } from '../pages/genre-details/genre-details';
 
 import { TabsPage } from '../pages/tabs/tabs';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
-import { MediaPlugin } from '@ionic-native/media';
+import { PlayerComponent } from '../components/player/player';
+import { CountPipe } from '../pipes/count/count';
 
 @NgModule({
   declarations: [
@@ -30,7 +32,10 @@ import { MediaPlugin } from '@ionic-native/media';
     SpotifyPage,
     ChartsPage,
     SearchPage,
-    TabsPage
+    GenreDetailsPage,
+    TabsPage,
+    PlayerComponent,
+    CountPipe
   ],
   imports: [
     BrowserModule,
@@ -48,13 +53,13 @@ import { MediaPlugin } from '@ionic-native/media';
     SpotifyPage,
     ChartsPage,
     SearchPage,
+    GenreDetailsPage,
     TabsPage
   ],
   providers: [
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    MediaPlugin
   ]
 })
 export class AppModule {}

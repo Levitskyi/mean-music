@@ -7,23 +7,37 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-searchbar (ionInput)="getItems($event)" placeholder="Search music"></ion-searchbar>
+
+    <ion-buttons start>
+      <button ion-button icon-only menuToggle>
+        <ion-icon name="menu"></ion-icon>
+      </button>
+    </ion-buttons>
+
+    <ion-title>Smart search</ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only>
+        <ion-icon name="microphone"></ion-icon>
+      </button>
+    </ion-buttons>
   </ion-navbar>
 
 </ion-header>
 
 
 <ion-content padding>
-  <ion-list class="search-ion-list" *ngIf="!musicListSearched.length">
-    <button ion-item *ngFor="let item of musicList" (click)="selectItem(item.track)">
-      <ion-avatar item-start>
-        <img [src]="item.track.artwork_url || item.track.user.avatar_url || item.artwork_url || item.user.avatar_url">
-      </ion-avatar>
-      <h2>{{item.track.title || item.title}}</h2>
-      <p>{{item.track.description || item.description}}</p>
-      <ion-note item-end>{{intToString(item.track.playback_count || item.playback_count)}}</ion-note>
-    </button>
-  </ion-list>
+  <ion-searchbar (ionInput)="getItems($event)" placeholder="Search music"></ion-searchbar>
+  <!--<ion-list class="search-ion-list" *ngIf="!musicListSearched.length">-->
+    <!--<button ion-item *ngFor="let item of musicList" (click)="selectItem(item.track)">-->
+      <!--<ion-avatar item-start>-->
+        <!--<img [src]="item.track.artwork_url || item.track.user.avatar_url || item.artwork_url || item.user.avatar_url">-->
+      <!--</ion-avatar>-->
+      <!--<h2>{{item.track.title || item.title}}</h2>-->
+      <!--<p>{{item.track.description || item.description}}</p>-->
+      <!--<ion-note item-end>{{intToString(item.track.playback_count || item.playback_count)}}</ion-note>-->
+    <!--</button>-->
+  <!--</ion-list>-->
+  <ion-title>Here is will be some info  text  for recognition search</ion-title>
   <ion-list class="search-ion-list" *ngIf="musicListSearched.length">
     <button ion-item *ngFor="let item of musicListSearched" (click)="selectItem(item)">
       <ion-avatar item-start>
