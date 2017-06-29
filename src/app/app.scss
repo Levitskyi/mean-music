@@ -34,3 +34,55 @@
     bottom: 0;
   }
 }
+
+
+.search-ion-list {
+  .play-button-holder {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    button {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      padding: 0;
+      width: 25px;
+      height: 25px;
+      margin: 0;
+      text-align: center;
+      border-radius: 50%;
+      .icon {
+        position: relative;
+        left: 1px;
+      }
+    }
+  }
+  ion-note {
+    font-size: 12px;
+    .icon {
+      vertical-align: text-bottom;
+    }
+  }
+  .item-inner .label {
+    margin: 6px 8px 6px 0;
+  }
+  .item-block {
+    padding-left: 0;
+    ion-thumbnail {
+      min-width: 45px;
+      min-height: 45px;
+      position: relative;
+      img {
+        width: 45px;
+        height: 45px;
+      }
+    }
+    .item-inner {
+      background-image: none !important;
+      padding-right: 0 !important;
+    }
+  }
+}

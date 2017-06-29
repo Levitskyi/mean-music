@@ -9,14 +9,29 @@
   <ion-navbar>
     <ion-title>{{genre?.title}}</ion-title>
   </ion-navbar>
+  <ion-toolbar>
+    <ion-segment [(ngModel)]="topRate">
+      <ion-segment-button value="top" (ionSelect)="selectRateChart($event)">
+        Top 50
+      </ion-segment-button>
+      <ion-segment-button value="trending" (ionSelect)="selectRateChart($event)">
+        New & hot
+      </ion-segment-button>
+    </ion-segment>
+  </ion-toolbar>
 
 </ion-header>
 
 
 <ion-content padding>
   <ion-list class="search-ion-list">
-    <ion-item ion-item *ngFor="let item of musicList" (click)="selectItem(item.track)">
+    <button ion-item *ngFor="let item of musicList" (click)="playTrack(item.track)">
       <ion-thumbnail item-start>
+        <!--<div class="play-button-holder">-->
+          <!--<button ion-button round small>-->
+            <!--<ion-icon name="play"></ion-icon>-->
+          <!--</button>-->
+        <!--</div>-->
         <img [src]="item.track.artwork_url || item.track.user.avatar_url">
       </ion-thumbnail>
       <h2>{{item.track.title || item.title}}</h2>
@@ -26,6 +41,6 @@
           By - <strong>{{item.track.user.username || item.user.username}}</strong>
         </ion-note>
       </p>
-    </ion-item>
+    </button>
   </ion-list>
 </ion-content>
