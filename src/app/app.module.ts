@@ -20,6 +20,7 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { PlayerComponent } from '../components/player/player';
 import { CountPipe } from '../pipes/count/count';
+import { MinsecPipe } from '../pipes/minsec/minsec';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import { CountPipe } from '../pipes/count/count';
     GenreDetailsPage,
     TabsPage,
     PlayerComponent,
-    CountPipe
+    CountPipe,
+    MinsecPipe
   ],
   imports: [
     BrowserModule,

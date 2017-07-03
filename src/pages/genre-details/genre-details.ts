@@ -20,6 +20,10 @@ export class GenreDetailsPage {
   musicList: any;
   topRate: string = 'top';
   kindOfTrendingMusic: string = this.topRate;
+  showPlayer: boolean = false;
+  player: any;
+  songData: any;
+  itemSong: any;
 
   constructor(
     public navCtrl: NavController,
@@ -62,15 +66,21 @@ export class GenreDetailsPage {
   }
 
   playTrack(item) {
-    console.log(item);
-
-    SC.stream('/tracks/'+ item.id).then(function(player){
-      console.log(player);
-      player.play();
-      player.on('time', (time) => {
-        console.log(player.currentTime());
-      });
+    this.itemSong = item;
+    this.songData = {
+      title: item.title,
+      username: item.user.username,
+      duration: item.duration,
+      image: item.artwork_url || item.user.avatar_url
+    };
+    SC.stream('/tracks/'+ item.id).then((player) =>{
+      this.player = player;
+      this.showPlayer = true;
     });
+  }
+
+  playNext() {
+    console.log('play next');
   }
 
 }

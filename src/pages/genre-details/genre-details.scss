@@ -61,7 +61,7 @@ body .player, html .player {
 body .player .album-art, html .player .album-art {
   position: absolute;
   left: 0;
-  width: 15%;
+  width: 75px;
   height: 100%;
   box-shadow: 3px 0 3px 0 rgba(0, 0, 0, 0.4);
   padding: 5px;
@@ -70,24 +70,25 @@ body .player .album-art .cover, html .player .album-art .cover {
   width: 100%;
   height: 100%;
   box-shadow: 0 0 3px 2px rgba(0, 0, 0, 0.25);
-  background: url("https://upload.wikimedia.org/wikipedia/en/6/67/Foo_Fighters_8LP_Sonic_Highways.jpg");
-  background-size: cover;
 }
 body .player .description, html .player .description {
   position: relative;
   width: 60%;
   height: 50px;
-  top: 20%;
-  left: 20%;
+  top: 28%;
+  left: 90px;
   overflow: hidden;
 }
 body .player .description .title, html .player .description .title {
   color: black;
-  font-size: 24px;
+  font-size: 16px;
   font-weight: 100;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
 }
 body .player .description .sub-title, html .player .description .sub-title {
-  font-size: 13px;
+  font-size: 12px;
   font-weight: 100;
   color: #999;
 }
@@ -115,6 +116,7 @@ body .player .play-button .lp-background, html .player .play-button .lp-backgrou
   height: 100%;
   z-index: 1;
   position: absolute;
+  opacity: 0;
 }
 body .player .play-button i, html .player .play-button i {
   z-index: 100;
@@ -132,7 +134,7 @@ body .player .play-button:hover, html .player .play-button:hover {
 }
 body .player .time-indicator, html .player .time-indicator {
   position: absolute;
-  right: 11%;
+  right: 20px;
   top: 60%;
   font-size: 13px;
   font-weight: 100;
@@ -172,36 +174,10 @@ body .player .visualizer div, html .player .visualizer div {
   margin-right: 5px;
   transition: all 0.1s ease;
 }
-body .player.paused, html .player.paused {
+body .player, html .player {
   border-bottom: none;
 }
-body .player.paused .visualizer, html .player.paused .visualizer {
-  opacity: 0;
-}
-body .player.paused .lp-background, html .player.paused .lp-background {
-  opacity: 0;
-}
-body .player.paused .play-button .mdi-pause, html .player.paused .play-button .mdi-pause {
-  opacity: 0;
-}
-body .player.playing .description, html .player.playing .description {
-  opacity: 0;
-}
-body .player.playing .album-art, html .player.playing .album-art {
-  width: 0px;
-  opacity: 0;
-}
-body .player.playing .visualizer, html .player.playing .visualizer {
-  left: 5%;
-  width: 65%;
-}
-body .player.playing .progress-bar, html .player.playing .progress-bar {
-  height: 4px;
-  margin: 0;
-  opacity: 1;
-}
-body .player.playing .description, html .player.playing .description {
-  left: 0%;
+body .player .play-button .mdi-pause, html .player .play-button .mdi-pause {
   opacity: 0;
 }
 body .player.playing .play-button, html .player.playing .play-button {
@@ -209,6 +185,14 @@ body .player.playing .play-button, html .player.playing .play-button {
 }
 body .player.playing .play-button .mdi-play, html .player.playing .play-button .mdi-play {
   opacity: 0;
+}
+body .player.playing .play-button .lp-background, 
+html .player.playing .play-button .lp-background {
+  opacity: 1;
+}
+body .player.playing .play-button .mdi-pause,
+html .player.playing .play-button .mdi-pause {
+  opacity: 1;
 }
 
 @keyframes spin {

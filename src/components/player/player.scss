@@ -1,3 +1,20 @@
 player {
-
+	.range {
+		position: absolute;
+		width: 100%;
+		z-index: 99;
+		padding: 0 !important;
+		bottom: -4px;
+		left: 0;
+		.range-slider {
+			height: 4px;
+			.range-bar {
+				height: 4px;
+				top: 0;
+			}
+		}
+		.range-knob-handle {
+			display: none;
+		}
+	}
 }
