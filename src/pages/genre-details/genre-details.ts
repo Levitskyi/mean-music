@@ -50,8 +50,11 @@ export class GenreDetailsPage {
 
     this.http.get(response_url, {search:params})
       .map((res) => res.json()).subscribe(response => {
-      console.log(response);
-      this.musicList = response.collection;
+
+      let filteredList = response.collection.filter(elem => {
+        return elem.track.duration > 30000;
+      });
+      this.musicList = filteredList;
     });
   }
 
@@ -60,12 +63,12 @@ export class GenreDetailsPage {
   }
 
   selectRateChart(rate) {
-    console.log(rate);
     this.kindOfTrendingMusic = rate.value;
     this.getPlaylist();
   }
 
   playTrack(item) {
+    if(this.player) this.player.pause();
     this.itemSong = item;
     this.songData = {
       title: item.title,
@@ -74,13 +77,21 @@ export class GenreDetailsPage {
       image: item.artwork_url || item.user.avatar_url
     };
     SC.stream('/tracks/'+ item.id).then((player) =>{
+      player.on('finish', () => {
+        this.playNext(item.id);
+      });
       this.player = player;
       this.showPlayer = true;
     });
   }
 
-  playNext() {
-    console.log('play next');
+  playNext(id) {
+    let index = this.musicList.findIndex((elem) => elem.track.id === id);
+    if(index >= this.musicList.lenth - 1) {
+      this.playTrack(this.musicList[0].track);
+    } else {
+      this.playTrack(this.musicList[index+1].track);
+    }
   }
 
 }

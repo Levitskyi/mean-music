@@ -25,23 +25,21 @@ export class PlayerComponent implements OnInit, OnChanges  {
 
   ngOnChanges(changes: SimpleChanges) {
   	if(changes.player) {
-  		console.log(changes, 'changes');
   		this.player = changes.player.currentValue;
   		this.initPlayer();
   	}
-    // changes.prop contains the old and the new value...
   }
 
   initPlayer() {
     this.player.play();
     this.playing = true;
-    this.player.on('time', (time)=> {
+    this.player.on('time', ()=> {
 		this.currentTime = this.player.currentTime();
 		this.timeHolder = this.player.currentTime();
-    })
-    this.player.on('finish', (time)=> {
-    	console.log();
-		this.finished.emit();
+    });
+    this.player.on('finish', ()=> {
+      console.log('finished');
+		  // this.finished.emit();
     })
   }
 
