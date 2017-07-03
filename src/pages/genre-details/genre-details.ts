@@ -87,7 +87,7 @@ export class GenreDetailsPage {
 
   playNext(id) {
     let index = this.musicList.findIndex((elem) => elem.track.id === id);
-    if(index >= this.musicList.lenth - 1) {
+    if(index >= this.musicList.length - 1) {
       this.playTrack(this.musicList[0].track);
     } else {
       this.playTrack(this.musicList[index+1].track);
