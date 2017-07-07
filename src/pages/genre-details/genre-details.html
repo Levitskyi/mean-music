@@ -23,7 +23,10 @@
 </ion-header>
 
 
-<ion-content padding>
+<ion-content padding [ngClass]="{'appear-player':showPlayer}">
+  <!--<div class="text-center spinner-block">-->
+    <!--<ion-spinner></ion-spinner>-->
+  <!--</div>-->
   <ion-list class="search-ion-list">
     <button ion-item *ngFor="let item of musicList" (click)="playTrack(item.track)">
       <ion-thumbnail item-start>
@@ -43,5 +46,7 @@
       </p>
     </button>
   </ion-list>
-  <player [player]="player" *ngIf="showPlayer" [data]="songData" (finished)="playNext()"></player>
 </ion-content>
+<ion-footer>
+  <player [player]="player" *ngIf="showPlayer" [data]="songData" (finished)="playNext()"></player>
+</ion-footer>

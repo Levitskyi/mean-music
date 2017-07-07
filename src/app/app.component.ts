@@ -2,17 +2,16 @@ import { Component, ViewChild } from '@angular/core';
 import { Platform, MenuController, Nav } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
-
 // import { TabsPage } from '../pages/tabs/tabs';
 
 //pages
 import { SearchPage } from '../pages/search/search';
-import { AboutPage } from '../pages/about/about';
-import { HomePage } from '../pages/home/home';
-import { ContactPage } from '../pages/contact/contact';
-import { RockPage } from '../pages/rock/rock';
-import { LastFmPage } from '../pages/last-fm/last-fm';
-import { SpotifyPage } from '../pages/spotify/spotify';
+// import { AboutPage } from '../pages/about/about';
+// import { HomePage } from '../pages/home/home';
+// import { ContactPage } from '../pages/contact/contact';
+// import { RockPage } from '../pages/rock/rock';
+// import { LastFmPage } from '../pages/last-fm/last-fm';
+// import { SpotifyPage } from '../pages/spotify/spotify';
 import { ChartsPage } from '../pages/charts/charts';
 
 @Component({
@@ -35,13 +34,14 @@ export class MyApp {
     this.pages = [
       { title: 'Smart Search', component: SearchPage, index: 0, icon: 'search' },
       { title: 'Charts', component: ChartsPage, index: 1, icon: 'musical-notes' },
-      { title: 'Home', component: HomePage, index: 2, icon: 'search' },
-      { title: 'About', component: AboutPage, index: 3, icon: 'search' },
-      { title: 'Contact', component: ContactPage, index: 4, icon: 'search' },
-      { title: 'Rock', component: RockPage, index: 5, icon: 'search' },
-      { title: 'Last fm', component: LastFmPage, index: 6, icon: 'search' },
-      { title: 'Spotify', component: SpotifyPage, index: 7, icon: 'search' },
     ];
+
+    // { title: 'Home', component: HomePage, index: 2, icon: 'search' },
+    // { title: 'About', component: AboutPage, index: 3, icon: 'search' },
+    // { title: 'Contact', component: ContactPage, index: 4, icon: 'search' },
+    // { title: 'Rock', component: RockPage, index: 5, icon: 'search' },
+    // { title: 'Last fm', component: LastFmPage, index: 6, icon: 'search' },
+    // { title: 'Spotify', component: SpotifyPage, index: 7, icon: 'search' },
   }
 
 
