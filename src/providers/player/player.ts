@@ -15,9 +15,12 @@ export class PlayerProvider {
   clientId: string = '2t9loNQH90kzJcsFCODdigxfp325aq4z';
   trackList: object[] = [];
   track: any;
+  player: any;
   // Observable string sources
   private playerSubject = new Subject<string>();
   playerConfirmed$ = this.playerSubject.asObservable();
+  private timerSubject = new Subject<number>();
+  timerConfirmed$ = this.timerSubject.asObservable();
 
   constructor(public http: Http) {
     SC.initialize({
@@ -25,24 +28,32 @@ export class PlayerProvider {
     });
   }
 
-
-  playTrack(item, trackList) {
+  initPlayer(item, trackList) {
 	this.track = item;
 	this.trackList = trackList;
-	this.playerSubject.next(item);
-    // if(this.player) this.player.pause();
-    // this.itemSong = item;
-    // this.songData = {
-    //   title: item.title,
-    //   username: item.user.username,
-    //   duration: item.duration,
-    //   image: item.artwork_url || item.user.avatar_url
-    // };
-    // SC.stream('/tracks/'+ item.id).then((player) =>{
-    //   player.on('finish', () => {
-    //     this.playNext(item.id);
-    //   });
-    // });
+    SC.stream('/tracks/'+ item.id).then((player) =>{
+   	  this.player = player;
+	  this.playerSubject.next(item);
+	  this.playTrack();
+	  this.timeChange();
+      player.on('finish', () => {
+      	console.log('finished play');
+      });
+    });
+  }
+
+  timeChange() {
+  	this.player.on('time', ()=> {
+  		this.timerSubject.next(this.player.currentTime());
+    });
+  }
+
+  playTrack() {
+  	this.player.play();
+  }
+
+  pauseTrack() {
+  	this.player.pause();
   }
 
 }

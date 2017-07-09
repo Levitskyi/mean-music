@@ -3,22 +3,18 @@
 	  <div class="fixed-player">
 	    <div class="wrap">
 	      <div class="player" [ngClass]="{'playing':playing}">
-	      player works!!!!
-	        <!-- <div class="progress-bar">
-	          <div class="runner"></div>
-	        </div> -->
-	        <!-- <div class="album-art">
-	          <img class="cover" [src]="data.image">
+	        <div class="album-art">
+	          <img class="cover" [src]="track.artwork_url || track.user.avatar_url">
 	        </div>
 	        <div>
-	        	<ion-range min="0" max="{{data.duration}}"
+	        	<ion-range min="0" max="{{track.duration}}"
 	        	[(ngModel)]="currentTime"
 	        	color="danger" (ionChange)="onRangeChange($event)">
 	        	</ion-range>
 	        </div>
 	        <div class="description">
-	          <div class="title">{{data.title}}</div>
-	          <div class="sub-title">by {{data.username}}</div>
+	          <div class="title">{{track.title}}</div>
+	          <div class="sub-title">by {{track.user.username}}</div>
 	        </div>
 	        <div class="play-button" (click)="togglePlayer()">
 	          <div class="lp-background"></div>
@@ -27,8 +23,8 @@
 	        </div>
 	        <div class="time-indicator">
 	          <i class="mdi mdi-clock"></i>
-	          <span class="time">{{currentTime | minsec}} - {{data.duration | minsec}}</span>
-	        </div> -->
+	          <span class="time">{{currentTime | minsec}} - {{track.duration | minsec}}</span>
+	        </div>
 	      </div>
 	    </div>
 	  </div>

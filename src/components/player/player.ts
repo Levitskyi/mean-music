@@ -15,21 +15,39 @@ export class PlayerComponent implements OnInit, OnChanges  {
   // @Input() player;
   // @Input() data;
   // @Output() finished = new EventEmitter<any>();
-  // playing: boolean = false;
-  // currentTime: number = 0;
-  // singleValue: any;
-  // timeHolder: number;
+  playing: boolean = false;
+  currentTime: number = 0;
+  timeHolder: number;
+  track: any;
   showPlayer: boolean = false;
 
   constructor(public playerService: PlayerProvider) {
   	playerService.playerConfirmed$.subscribe(item => {
-  		console.log(item, 'good job bro');
+  		this.track = item;
+  		this.showPlayer = true;
+  		this.playing = true;
   	});
+
   }
 
 
   ngOnInit() {
+  	this.playerService.timerConfirmed$.subscribe(item => {
+  		this.currentTime = item;
+  		this.timeHolder = item;
+  		console.log(item);
+  	});
   	// this.initPlayer();
+  }
+
+  togglePlayer() {
+    if(this.playing) {
+  		this.playerService.pauseTrack();
+      this.playing = false;
+    } else {
+      this.playing = true;
+  		this.playerService.playTrack();
+    }
   }
 
   ngOnChanges(changes: SimpleChanges) {
@@ -63,9 +81,10 @@ export class PlayerComponent implements OnInit, OnChanges  {
   //   }
   // }
 
-  // onRangeChange(event) {
-  // 	if(event.value !== this.timeHolder) {
-  // 		this.player.seek(event.value);
-  // 	}
-  // }
+  onRangeChange(event) {
+  	if(event.value !== this.timeHolder) {
+  		console.log('changed range');
+  		// this.player.seek(event.value);
+  	}
+  }
 }

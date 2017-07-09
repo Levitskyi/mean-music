@@ -16,8 +16,13 @@ player {
 		.range-knob-handle {
 			display: none;
 		}
+
 	}
 
+	  .fixed-player {
+	    position: relative;
+	    bottom: 4px;
+	  }
 
   @import url(https://fonts.googleapis.com/css?family=Roboto:400,300);
   @import url(https://cdn.materialdesignicons.com/1.3.41/css/materialdesignicons.min.css);

@@ -70,7 +70,7 @@ export class GenreDetailsPage {
   }
 
   playTrack(item) {
-    this.player.playTrack(item, this.musicList);
+    this.player.initPlayer(item, this.musicList);
     // if(this.player) this.player.pause();
     // this.itemSong = item;
     // this.songData = {
