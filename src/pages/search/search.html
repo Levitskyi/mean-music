@@ -21,12 +21,16 @@
       </button>
     </ion-buttons>
   </ion-navbar>
+  <ion-toolbar no-border-top>
+    <ion-searchbar (ionInput)="getItems($event)" 
+    placeholder="Search music"></ion-searchbar>
+  </ion-toolbar>
 
 </ion-header>
 
 
 <ion-content padding>
-  <ion-searchbar (ionInput)="getItems($event)" placeholder="Search music"></ion-searchbar>
+  
   <!--<ion-list class="search-ion-list" *ngIf="!musicListSearched.length">-->
     <!--<button ion-item *ngFor="let item of musicList" (click)="selectItem(item.track)">-->
       <!--<ion-avatar item-start>-->

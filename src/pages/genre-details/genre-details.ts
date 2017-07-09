@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Http, URLSearchParams } from '@angular/http';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import * as SC from 'soundcloud';
+import { PlayerProvider } from '../../providers/player/player';
 
 /**
  * Generated class for the GenreDetailsPage page.
@@ -21,14 +22,15 @@ export class GenreDetailsPage {
   topRate: string = 'top';
   kindOfTrendingMusic: string = this.topRate;
   showPlayer: boolean = false;
-  player: any;
+  // player: any;
   songData: any;
   itemSong: any;
 
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
-    public http: Http) {
+    public http: Http,
+    public player: PlayerProvider) {
   }
 
   ionViewDidLoad() {
@@ -68,21 +70,22 @@ export class GenreDetailsPage {
   }
 
   playTrack(item) {
-    if(this.player) this.player.pause();
-    this.itemSong = item;
-    this.songData = {
-      title: item.title,
-      username: item.user.username,
-      duration: item.duration,
-      image: item.artwork_url || item.user.avatar_url
-    };
-    SC.stream('/tracks/'+ item.id).then((player) =>{
-      player.on('finish', () => {
-        this.playNext(item.id);
-      });
-      this.player = player;
-      this.showPlayer = true;
-    });
+    this.player.playTrack(item, this.musicList);
+    // if(this.player) this.player.pause();
+    // this.itemSong = item;
+    // this.songData = {
+    //   title: item.title,
+    //   username: item.user.username,
+    //   duration: item.duration,
+    //   image: item.artwork_url || item.user.avatar_url
+    // };
+    // SC.stream('/tracks/'+ item.id).then((player) =>{
+    //   player.on('finish', () => {
+    //     this.playNext(item.id);
+    //   });
+    //   this.player = player;
+    //   this.showPlayer = true;
+    // });
   }
 
   playNext(id) {

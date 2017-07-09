@@ -1,32 +1,35 @@
 
-  <div class="fixed-player">
-    <div class="wrap">
-      <div class="player" [ngClass]="{'playing':playing}">
-        <!-- <div class="progress-bar">
-          <div class="runner"></div>
-        </div> -->
-        <div class="album-art">
-          <img class="cover" [src]="data.image">
-        </div>
-        <div>
-        	<ion-range min="0" max="{{data.duration}}"
-        	[(ngModel)]="currentTime"
-        	color="danger" (ionChange)="onRangeChange($event)">
-        	</ion-range>
-        </div>
-        <div class="description">
-          <div class="title">{{data.title}}</div>
-          <div class="sub-title">by {{data.username}}</div>
-        </div>
-        <div class="play-button" (click)="togglePlayer()">
-          <div class="lp-background"></div>
-          <i class="mdi mdi-play"></i>
-          <i class="mdi mdi-pause"></i>
-        </div>
-        <div class="time-indicator">
-          <i class="mdi mdi-clock"></i>
-          <span class="time">{{currentTime | minsec}} - {{data.duration | minsec}}</span>
-        </div>
-      </div>
-    </div>
-  </div>
+  <ion-footer *ngIf="showPlayer">
+	  <div class="fixed-player">
+	    <div class="wrap">
+	      <div class="player" [ngClass]="{'playing':playing}">
+	      player works!!!!
+	        <!-- <div class="progress-bar">
+	          <div class="runner"></div>
+	        </div> -->
+	        <!-- <div class="album-art">
+	          <img class="cover" [src]="data.image">
+	        </div>
+	        <div>
+	        	<ion-range min="0" max="{{data.duration}}"
+	        	[(ngModel)]="currentTime"
+	        	color="danger" (ionChange)="onRangeChange($event)">
+	        	</ion-range>
+	        </div>
+	        <div class="description">
+	          <div class="title">{{data.title}}</div>
+	          <div class="sub-title">by {{data.username}}</div>
+	        </div>
+	        <div class="play-button" (click)="togglePlayer()">
+	          <div class="lp-background"></div>
+	          <i class="mdi mdi-play"></i>
+	          <i class="mdi mdi-pause"></i>
+	        </div>
+	        <div class="time-indicator">
+	          <i class="mdi mdi-clock"></i>
+	          <span class="time">{{currentTime | minsec}} - {{data.duration | minsec}}</span>
+	        </div> -->
+	      </div>
+	    </div>
+	  </div>
+  </ion-footer>

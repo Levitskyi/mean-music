@@ -23,6 +23,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { PlayerComponent } from '../components/player/player';
 import { CountPipe } from '../pipes/count/count';
 import { MinsecPipe } from '../pipes/minsec/minsec';
+import { PlayerProvider } from '../providers/player/player';
 
 
 @NgModule({
@@ -65,6 +66,7 @@ import { MinsecPipe } from '../pipes/minsec/minsec';
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
+    PlayerProvider,
   ]
 })
 export class AppModule {
