@@ -1,8 +1,8 @@
 
-  <ion-footer *ngIf="showPlayer">
+  <ion-footer *ngIf="playerIsVisible">
 	  <div class="fixed-player">
 	    <div class="wrap">
-	      <div class="player" [ngClass]="{'playing':playing}">
+	      <div class="player" [ngClass]="{'playing':playing}" (click)="openGeneralPlayer()">
 	        <div class="album-art">
 	          <img class="cover" [src]="track.artwork_url || track.user.avatar_url">
 	        </div>
@@ -18,8 +18,8 @@
 	        </div>
 	        <div class="play-button" (click)="togglePlayer()">
 	          <div class="lp-background"></div>
-	          <i class="mdi mdi-play"></i>
-	          <i class="mdi mdi-pause"></i>
+            <ion-icon class="mdi-play" name="play"></ion-icon>
+            <ion-icon class="mdi-pause" name="pause"></ion-icon>
 	        </div>
 	        <div class="time-indicator">
 	          <i class="mdi mdi-clock"></i>

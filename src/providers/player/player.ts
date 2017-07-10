@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Http, URLSearchParams } from '@angular/http';
+import { Http } from '@angular/http';
 import { Subject }    from 'rxjs/Subject';
 import 'rxjs/add/operator/map';
 import * as SC from 'soundcloud';
@@ -29,15 +29,23 @@ export class PlayerProvider {
   }
 
   initPlayer(item, trackList) {
-	this.track = item;
-	this.trackList = trackList;
-    SC.stream('/tracks/'+ item.id).then((player) =>{
+    this.player && this.player.seek(0);
+	  this.track = item;
+	  this.trackList = trackList;
+    SC.stream('/tracks/'+ item.id).then(player =>{
    	  this.player = player;
-	  this.playerSubject.next(item);
-	  this.playTrack();
-	  this.timeChange();
-      player.on('finish', () => {
-      	console.log('finished play');
+      this.playerSubject.next(item);
+      this.playTrack();
+      this.timeChange();
+      this.player.on('buffering_start', () => {
+        console.log('buffering_start');
+      });
+      this.player.on('buffering_end', () => {
+        console.log('buffering_end');
+      });
+      this.player.on('finish', () => {
+        console.log('finished play');
+        this.playNext(item, trackList);
       });
     });
   }
@@ -49,11 +57,26 @@ export class PlayerProvider {
   }
 
   playTrack() {
+    console.log('play');
   	this.player.play();
   }
 
   pauseTrack() {
+    console.log('pause');
   	this.player.pause();
+  }
+
+  playNext(item, trackList) {
+    let index = trackList.findIndex((elem) => elem.track.id === item.id);
+    if(index >= trackList.length - 1) {
+      this.initPlayer(trackList[0].track, trackList);
+    } else {
+      this.initPlayer(trackList[index+1].track, trackList);
+    }
+  }
+
+  setTime(time) {
+    this.player.seek(time);
   }
 
 }

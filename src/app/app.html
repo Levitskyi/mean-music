@@ -17,6 +17,6 @@
 
 </ion-menu>
 
-<ion-nav [root]="rootPage" #content swipeBackEnabled="false"></ion-nav>
-<player></player>
+<ion-nav [root]="rootPage" #content swipeBackEnabled="false" [ngClass]="{'appear-player': playerIsVisible}"></ion-nav>
+<player (showPLayer)="showPlayer($event)"></player>
 

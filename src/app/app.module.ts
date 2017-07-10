@@ -13,6 +13,7 @@ import { SpotifyPage } from '../pages/spotify/spotify';
 import { ChartsPage } from '../pages/charts/charts';
 import { SearchPage } from '../pages/search/search';
 import { GenreDetailsPage } from '../pages/genre-details/genre-details';
+import { GeneralPlayerPage } from '../pages/general-player/general-player';
 
 import { TabsPage } from '../pages/tabs/tabs';
 
@@ -41,7 +42,8 @@ import { PlayerProvider } from '../providers/player/player';
     TabsPage,
     PlayerComponent,
     CountPipe,
-    MinsecPipe
+    MinsecPipe,
+    GeneralPlayerPage
   ],
   imports: [
     BrowserModule,
@@ -60,7 +62,8 @@ import { PlayerProvider } from '../providers/player/player';
     ChartsPage,
     SearchPage,
     GenreDetailsPage,
-    TabsPage
+    TabsPage,
+    GeneralPlayerPage
   ],
   providers: [
     StatusBar,

@@ -1,6 +1,7 @@
-import { Component, OnInit, SimpleChanges, OnChanges  } from '@angular/core';
-
+import { Component, OnInit, SimpleChanges, OnChanges, ChangeDetectorRef, Output, EventEmitter  } from '@angular/core';
+import { ModalController } from 'ionic-angular';
 import { PlayerProvider } from '../../providers/player/player';
+import { GeneralPlayerPage } from '../../pages/general-player/general-player';
 /**
  * Generated class for the PlayerComponent component.
  *
@@ -12,31 +13,35 @@ import { PlayerProvider } from '../../providers/player/player';
   templateUrl: 'player.html'
 })
 export class PlayerComponent implements OnInit, OnChanges  {
-  // @Input() player;
-  // @Input() data;
-  // @Output() finished = new EventEmitter<any>();
+  @Output() showPLayer = new EventEmitter<any>();
+  playerIsVisible: boolean = false;
   playing: boolean = false;
   currentTime: number = 0;
   timeHolder: number;
   track: any;
-  showPlayer: boolean = false;
 
-  constructor(public playerService: PlayerProvider) {
+  constructor(
+    public playerService: PlayerProvider,
+    public changeDetector: ChangeDetectorRef,
+    public modalCtrl: ModalController,
+  ) {
   	playerService.playerConfirmed$.subscribe(item => {
   		this.track = item;
-  		this.showPlayer = true;
+  		this.showPLayer.emit(true);
+  		this.playerIsVisible = true;
   		this.playing = true;
   	});
+
+    this.playerService.timerConfirmed$.subscribe(item => {
+      this.currentTime = item;
+      this.timeHolder = item;
+      this.changeDetector.detectChanges();
+    });
 
   }
 
 
   ngOnInit() {
-  	this.playerService.timerConfirmed$.subscribe(item => {
-  		this.currentTime = item;
-  		this.timeHolder = item;
-  		console.log(item);
-  	});
   	// this.initPlayer();
   }
 
@@ -81,10 +86,19 @@ export class PlayerComponent implements OnInit, OnChanges  {
   //   }
   // }
 
+  openGeneralPlayer() {
+    let modal = this.modalCtrl.create(GeneralPlayerPage, {data:'somedata object'});
+    modal.present();
+
+    modal.onWillDismiss((data: any[]) => {
+      console.log(data);
+    });
+  }
+
   onRangeChange(event) {
   	if(event.value !== this.timeHolder) {
+  	  this.playerService.setTime(event.value);
   		console.log('changed range');
-  		// this.player.seek(event.value);
   	}
   }
 }

@@ -18,14 +18,17 @@ player {
 		}
 
 	}
+  .footer {
+    &:before {
+      display: none;
+    }
+  }
 
-	  .fixed-player {
-	    position: relative;
-	    bottom: 4px;
-	  }
+  .fixed-player {
+    position: relative;
+    bottom: 4px;
+  }
 
-  @import url(https://fonts.googleapis.com/css?family=Roboto:400,300);
-  @import url(https://cdn.materialdesignicons.com/1.3.41/css/materialdesignicons.min.css);
   .wrap {
     margin: 0 auto;
     width: 100%;
@@ -96,7 +99,7 @@ player {
     cursor: pointer;
   }
   .player .play-button .lp-background {
-    transition: all 0.35s ease;
+    //transition: all 0.35s ease;
     background: url("http://i65.tinypic.com/v5wy3b.png");
     background-size: cover;
     animation: spin 1s infinite linear;
@@ -106,16 +109,22 @@ player {
     position: absolute;
     opacity: 0;
   }
-  .player .play-button i {
+  .player .play-button ion-icon {
     z-index: 100;
   }
   .player .play-button .mdi-pause {
     z-index: 100;
     position: absolute;
-    right: 17.5px;
-    top: 17.4px;
+    right: 21px;
+    top: 17px;
     color: white;
     font-size: 20px;
+  }
+  .player .play-button .mdi-play {
+    position: absolute;
+    right: 18px;
+    top: 15px;
+    font-size: 24px;
   }
   .player .play-button:hover {
     box-shadow: 0 3px 20px 0 rgba(0, 0, 0, 0.5);
@@ -127,7 +136,7 @@ player {
     font-size: 13px;
     font-weight: 100;
   }
-  .player .time-indicator i {
+  .player .time-indicator ion-icon {
     color: #D32F2F;
   }
   .player .progress-bar {
@@ -143,24 +152,6 @@ player {
   .player .progress-bar .runner {
     height: 4px;
     background: #F44336;
-  }
-  .player .visualizer {
-    position: absolute;
-    top: 25%;
-    left: 37.5%;
-    width: 0%;
-    height: 50%;
-    display: flex;
-    align-items: center;
-    overflow: hidden;
-  }
-  .player .visualizer div {
-    width: 2px;
-    background: #F44336;
-    float: left;
-    height: 0%;
-    margin-right: 5px;
-    transition: all 0.1s ease;
   }
   .player {
     border-bottom: none;

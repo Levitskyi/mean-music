@@ -19,7 +19,7 @@ import { ChartsPage } from '../pages/charts/charts';
 })
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
-
+  playerIsVisible = false;
   rootPage:any = SearchPage;
   pages: Array<{title: string, component: any, index: number, icon: string}>;
 
@@ -42,6 +42,10 @@ export class MyApp {
     // { title: 'Rock', component: RockPage, index: 5, icon: 'search' },
     // { title: 'Last fm', component: LastFmPage, index: 6, icon: 'search' },
     // { title: 'Spotify', component: SpotifyPage, index: 7, icon: 'search' },
+  }
+
+  showPlayer(event) {
+    this.playerIsVisible = true;
   }
 
 
