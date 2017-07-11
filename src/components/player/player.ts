@@ -45,7 +45,7 @@ export class PlayerComponent implements OnInit, OnChanges  {
   	// this.initPlayer();
   }
 
-  togglePlayer() {
+  togglePlayer(event) {
     if(this.playing) {
   		this.playerService.pauseTrack();
       this.playing = false;
@@ -53,6 +53,7 @@ export class PlayerComponent implements OnInit, OnChanges  {
       this.playing = true;
   		this.playerService.playTrack();
     }
+    event.stopPropagation();
   }
 
   ngOnChanges(changes: SimpleChanges) {

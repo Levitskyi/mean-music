@@ -16,7 +16,7 @@
 	          <div class="title">{{track.title}}</div>
 	          <div class="sub-title">by {{track.user.username}}</div>
 	        </div>
-	        <div class="play-button" (click)="togglePlayer()">
+	        <div class="play-button" (click)="togglePlayer($event)">
 	          <div class="lp-background"></div>
             <ion-icon class="mdi-play" name="play"></ion-icon>
             <ion-icon class="mdi-pause" name="pause"></ion-icon>
