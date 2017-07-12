@@ -22,7 +22,23 @@
 <!--</ion-content>-->
 
 <div class="player-holder">
-  <button ion-button clear left (click)="dismiss()">
-    <ion-icon name="close"></ion-icon>
-  </button>
+  <ion-header>
+    <ion-navbar>
+      <ion-buttons left>
+        <button ion-button icon-only (click)="dismiss()">
+          <ion-icon name="close"></ion-icon>
+        </button>
+      </ion-buttons>
+
+      <ion-title>1 of 50</ion-title>
+      <ion-buttons right>
+        <button ion-button icon-only>
+          <ion-icon name="menu"></ion-icon>
+        </button>
+      </ion-buttons>
+    </ion-navbar>
+  </ion-header>
+  <ion-content>
+
+  </ion-content>
 </div>

@@ -1,3 +1,10 @@
 page-general-player {
-
+  background: url("../../assets/background_by_diamonddew.png");
+  .toolbar-background {
+    background: transparent;
+  }
+  .toolbar-title,
+  .bar-button {
+    color: #fff;
+  }
 }

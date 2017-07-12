@@ -13,7 +13,11 @@
 	        	</ion-range>
 	        </div>
 	        <div class="description">
-	          <div class="title">{{track.title}}</div>
+	          <div class="title">
+              <marquee behavior="scroll" direction="left">
+                {{track.title}}
+              </marquee>
+            </div>
 	          <div class="sub-title">by {{track.user.username}}</div>
 	        </div>
 	        <div class="play-button" (click)="togglePlayer($event)">
