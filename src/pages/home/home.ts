@@ -13,6 +13,7 @@ export class HomePage {
   lastFmDetail: any = '2ee2ac2a0023ee9fff1f809a1ced06e2';
 
   musicList: any;
+  // clientId: string = '2t9loNQH90kzJcsFCODdigxfp325aq4z';
   clientId: string = '2t9loNQH90kzJcsFCODdigxfp325aq4z';
   constructor(public navCtrl: NavController, public http: Http) {
     SC.initialize({
@@ -34,7 +35,7 @@ export class HomePage {
     //   // });
     // })
 
-    let response_url = 'https://api-v2.soundcloud.com/charts';
+    let response_url = 'https://api.soundcloud.com/charts';
     let params: URLSearchParams = new URLSearchParams();
     params.set('kind', 'top');
     params.set('genre', 'soundcloud:genres:all-music');
@@ -49,7 +50,7 @@ export class HomePage {
   }
 
   getItems(event) {
-    let response_url = 'https://api-v2.soundcloud.com/charts';
+    let response_url = 'https://api.soundcloud.com/charts';
     let params: URLSearchParams = new URLSearchParams();
     params.set('kind', 'top');
     params.set('genre', 'soundcloud:genres:all-music');

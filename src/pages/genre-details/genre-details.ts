@@ -17,7 +17,7 @@ import { PlayerProvider } from '../../providers/player/player';
 })
 export class GenreDetailsPage {
   genre: any;
-  clientId: string = '2t9loNQH90kzJcsFCODdigxfp325aq4z';
+  clientId: string = '3ROp2mRheCyiOebUBZUvtAlcBpNyt6c5';
   musicList: any;
   topRate: string = 'top';
   kindOfTrendingMusic: string = this.topRate;
