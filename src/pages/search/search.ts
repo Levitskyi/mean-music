@@ -10,6 +10,11 @@ import * as SC from 'soundcloud';
  * See http://ionicframework.com/docs/components/#navigation for more info
  * on Ionic pages and navigation.
  */
+
+interface IWindow extends Window {
+  webkitSpeechRecognition: any;
+}
+
 @IonicPage()
 @Component({
   selector: 'page-search',
@@ -18,6 +23,8 @@ import * as SC from 'soundcloud';
 export class SearchPage {
   musicList: any;
   musicListSearched: any =[];
+  recognition: any;
+
 
   clientId: string = '2t9loNQH90kzJcsFCODdigxfp325aq4z';
 
@@ -31,6 +38,10 @@ export class SearchPage {
   }
 
   ionViewDidLoad() {
+     const {webkitSpeechRecognition} : IWindow = <IWindow>window;
+    this.recognition = new webkitSpeechRecognition();
+
+
     let response_url = 'https://api-v2.soundcloud.com/charts';
     let params: URLSearchParams = new URLSearchParams();
     params.set('kind', 'top');
@@ -65,7 +76,7 @@ export class SearchPage {
     var suffixNum = Math.floor((""+value).length/3);
     var shortValue = parseFloat((suffixNum != 0 ? (value / Math.pow(1000,suffixNum)) : value).toPrecision(2));
     if (shortValue % 1 != 0) {
-      var shortNum = shortValue.toFixed(1);
+      // var shortNum = shortValue.toFixed(1);
     }
     return shortValue+suffixes[suffixNum];
   }
@@ -87,6 +98,26 @@ export class SearchPage {
     //   // }, 10000);
     //   // this.streamingMedia.playAudio(res.stream_url + '?client_id=2t9loNQH90kzJcsFCODdigxfp325aq4z', options);
     // })
+  }
+
+  startRecognition(ev) {
+    this.recognition.onstart = (event) => {
+      console.log(event, 'start');
+    };
+
+    this.recognition.onresult = (event) => {
+        var text = "";
+          for (var i = event.resultIndex; i < event.results.length; ++i) {
+            text += event.results[i][0].transcript;
+          }
+          console.log(text);
+      };
+
+    this.recognition.lang = "en-US";
+    this.recognition.start();
+    this.recognition.onend = () => {
+      this.recognition.stop();
+    };
   }
 
 }
