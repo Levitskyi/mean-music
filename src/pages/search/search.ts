@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectorRef } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { Http, URLSearchParams } from '@angular/http';
 import * as SC from 'soundcloud';
@@ -10,6 +10,11 @@ import * as SC from 'soundcloud';
  * See http://ionicframework.com/docs/components/#navigation for more info
  * on Ionic pages and navigation.
  */
+
+ enum SearchType {
+   Input,
+   Speach
+ }
 
 interface IWindow extends Window {
   webkitSpeechRecognition: any;
@@ -24,13 +29,15 @@ export class SearchPage {
   musicList: any;
   musicListSearched: any =[];
   recognition: any;
+  recognitionText: string;
+  searchType = SearchType;
 
-
-  clientId: string = '2t9loNQH90kzJcsFCODdigxfp325aq4z';
+  clientId: string = '3ROp2mRheCyiOebUBZUvtAlcBpNyt6c5';
 
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
+    private changeDetectorRef: ChangeDetectorRef,
     public http: Http) {
     SC.initialize({
       client_id: this.clientId
@@ -42,32 +49,46 @@ export class SearchPage {
     this.recognition = new webkitSpeechRecognition();
 
 
-    let response_url = 'https://api-v2.soundcloud.com/charts';
-    let params: URLSearchParams = new URLSearchParams();
-    params.set('kind', 'top');
-    params.set('genre', 'soundcloud:genres:all-music');
-    params.set('limit', '50');
-    params.set('linked_partitioning', '1');
-    params.set('client_id', this.clientId);
+    // let response_url = 'https://api-v2.soundcloud.com/charts';
+    // let params: URLSearchParams = new URLSearchParams();
+    // params.set('kind', 'top');
+    // params.set('genre', 'soundcloud:genres:all-music');
+    // params.set('limit', '50');
+    // params.set('linked_partitioning', '1');
+    // params.set('client_id', this.clientId);
 
-    this.http.get(response_url, {search:params})
-      .map((res) => res.json()).subscribe(response => {
-      this.musicList = response.collection;
-    });
+    // this.http.get(response_url, {search:params})
+    //   .map((res) => res.json()).subscribe(response => {
+    //     console.log(response);
+    //   this.musicList = response.collection;
+    // });
   }
 
-  getItems(event) {
-    console.log(event.target.value);
-    if(!event.target.value) {
-      this.musicListSearched = [];
-    } else {
-      SC.get('/tracks', {
-        q: event.target.value,
-        limit: 50,
-        linked_partitioning: 1
-      }).then(res => {
-        this.musicListSearched = res.collection;
-      })
+  getItems(event, type: SearchType) {
+    console.log(event);
+    if (type === SearchType.Input) {
+      if(!event.target.value) {
+        this.musicListSearched = [];
+      } else {
+        SC.get('/tracks', {
+          q: event.target.value,
+          limit: 50,
+          linked_partitioning: 1
+        }).then(res => {
+          this.musicListSearched = res.collection;
+        })
+      }
+    } else if (type === SearchType.Speach) {
+        SC.get('/tracks', {
+          q: event,
+          limit: 50,
+          linked_partitioning: 1
+        }).then(res => {
+          console.log('dfgdfg');
+          this.musicListSearched = res.collection;
+
+    this.changeDetectorRef.detectChanges();
+        })
     }
   }
 
@@ -84,7 +105,7 @@ export class SearchPage {
   selectItem(item) {
     SC.stream('/tracks/'+ item.id).then(function(player){
       console.log(player);
-      // player.play();
+      player.play();
       // setTimeout(()=> {
       //   player.pause();
       // }, 4000);
@@ -104,16 +125,18 @@ export class SearchPage {
     this.recognition.onstart = (event) => {
       console.log(event, 'start');
     };
-
     this.recognition.onresult = (event) => {
         var text = "";
           for (var i = event.resultIndex; i < event.results.length; ++i) {
             text += event.results[i][0].transcript;
           }
-          console.log(text);
+          this.recognitionText = text;
+          this.changeDetectorRef.detectChanges();
+          this.getItems(text, this.searchType.Speach)
+          console.log(text, '<<<<<<<<<-----it will be here');
       };
 
-    this.recognition.lang = "en-US";
+    this.recognition.lang = "uk-UK";
     this.recognition.start();
     this.recognition.onend = () => {
       this.recognition.stop();

@@ -22,7 +22,7 @@
     </ion-buttons>
   </ion-navbar>
   <ion-toolbar no-border-top>
-    <ion-searchbar (ionInput)="getItems($event)" 
+    <ion-searchbar (ionInput)="getItems($event, searchType.Input)" 
     placeholder="Search music"></ion-searchbar>
   </ion-toolbar>
 
@@ -41,7 +41,7 @@
       <!--<ion-note item-end>{{intToString(item.track.playback_count || item.playback_count)}}</ion-note>-->
     <!--</button>-->
   <!--</ion-list>-->
-  <ion-title>Here is will be some info  text  for recognition search</ion-title>
+  <ion-title>{{recognitionText || 'Valia kakashka'}}</ion-title>
   <ion-list class="search-ion-list" *ngIf="musicListSearched.length">
     <button ion-item *ngFor="let item of musicListSearched" (click)="selectItem(item)">
       <ion-avatar item-start>
